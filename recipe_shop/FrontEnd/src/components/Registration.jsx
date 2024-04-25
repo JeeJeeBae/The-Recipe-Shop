@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useFetch from "../hooks/useFetch";
-import logo from "../ts_logo.png";
+import useFetch from "./hooks/useFetch";
+// import logo from "../ts_logo.png";
 
 const Registration = (props) => {
   const fetchData = useFetch();
@@ -45,7 +45,7 @@ const Registration = (props) => {
     <>
       <br />
       <div className="login">
-        <img src={logo} className="logo"></img>
+        {/* <img src={logo} className="logo"></img> */}
         <div className="">
           <div className=""></div>
           <input
