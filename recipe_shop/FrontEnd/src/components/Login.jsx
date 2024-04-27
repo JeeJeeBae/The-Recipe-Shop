@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import useFetch from "./hooks/useFetch";
 import UserContext from "../context/user";
-// import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 // import logo from "../ts_logo.png";
 
 const Login = (props) => {
@@ -13,25 +13,25 @@ const Login = (props) => {
 
   const handleLogin = async () => {
     const res = await fetchData(
-      "/api/login",
+      "/auth/login",
       "POST",
-      { email, password }
-      // undefined
+      { email, password },
+      undefined
     );
 
     if (res.ok) {
       // set access token
       userCtx.setAccessToken(res.data.access);
       // decode the claims from backend
-      // const decoded = jwtDecode(res.data.access);
-      // // get the role from the decoded claims
-      // userCtx.setRole(decoded.role);
+      const decoded = jwtDecode(res.data.access);
+      // get the role from the decoded claims
+      userCtx.setRole(decoded.role);
       // get staffId from decoded claims
-      // userCtx.setActiveStaffId(decoded.staffId);
-      // console.log(decoded.staffId)
+      userCtx.setActiveStaffId(decoded.staffId);
+      console.log(decoded.staffId);
       // save refresh token into local storage
-      // localStorage.setItem(decoded.staffId, res.data.refresh);
-      // // // quick check on localstorage key
+      localStorage.setItem(decoded.staffId, res.data.refresh);
+      // // quick check on localstorage key
     } else {
       alert(JSON.stringify(res.data));
     }

@@ -10,26 +10,26 @@ const Registration = (props) => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  // const getRoles = async () => {
-  //   const res = await fetchData("/roles", "GET");
-  //   if (res.ok) {
-  //     setRoles(res.data);
-  //   } else {
-  //     alert(JSON.stringify(res.data));
-  //   }
-  // };
+  const getRoles = async () => {
+    const res = await fetchData("/roles", "GET");
+    if (res.ok) {
+      setRoles(res.data);
+    } else {
+      alert(JSON.stringify(res.data));
+    }
+  };
 
   const registerUser = async () => {
-    const res = await fetchData("/api/register", "POST", {
+    const res = await fetchData("/auth/register", "POST", {
       email,
       password,
-      // role,
+      role,
     });
 
     if (res.ok) {
       setEmail("");
       setPassword("");
-      // setRole("");
+      setRole("");
       alert("successfully Registered!");
       props.setShowLogin(true);
     } else {
@@ -37,9 +37,9 @@ const Registration = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   getRoles();
-  // }, []);
+  useEffect(() => {
+    getRoles();
+  }, []);
 
   return (
     <>
@@ -70,14 +70,14 @@ const Registration = (props) => {
           <div className=""></div>
         </div>
         <select className="selection">
-          <option value="none">Select your country</option>
-          {/* {roles.map((item) => {
+          <option value="none">Choose your role</option>
+          {roles.map((item) => {
             return (
               <option key={item} value={item}>
                 {item}
               </option>
             );
-          })} */}
+          })}
         </select>
         <div className="">
           <div className=""></div>

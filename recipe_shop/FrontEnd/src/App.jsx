@@ -7,7 +7,7 @@ import Home from "./Home";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
-  // const [role, setRole] = useState("");
+  const [role, setRole] = useState("");
   const [showLogin, setShowLogin] = useState(true);
   const [userCtx, setUserCtx] = useState({});
 
@@ -17,19 +17,19 @@ function App() {
         value={{
           accessToken,
           setAccessToken,
-          // role,
-          // setRole,
+          role,
+          setRole,
           userCtx,
           showLogin,
           setShowLogin,
           setUserCtx,
         }}
       >
-        {accessToken && <Home></Home>}
-        {String(accessToken).length === 0 && showLogin && (
+        {accessToken.length > 0 && <Home></Home>}
+        {accessToken.length === 0 && showLogin && (
           <Login setShowLogin={setShowLogin}></Login>
         )}
-        {String(accessToken).length === 0 && !showLogin && (
+        {accessToken.length === 0 && !showLogin && (
           <Registration setShowLogin={setShowLogin}></Registration>
         )}
       </UserContext.Provider>
