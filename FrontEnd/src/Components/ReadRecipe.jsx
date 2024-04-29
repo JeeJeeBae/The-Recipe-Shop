@@ -19,34 +19,15 @@ const ReadRecipe = () => {
         .catch((err) => console.log(err));
     };
 
-    // const fetchSavedRecipes = () => {
-    //   axios
-    //     .get("http://localhost:3001/recipe/saved-recipes/" + userId)
-    //     .then((result) => {
-    //       setSavedRecipes(result.data.savedRecipes);
-    //     })
-    //     .catch((err) => console.log(err));
-    // };
-
     const fetchSavedRecipes = () => {
       axios
         .get("http://localhost:3001/recipe/saved-recipes/" + userId)
         .then((result) => {
-          // Ensure the data is in the expected format
-          const savedRecipesData = result.data.savedRecipes;
-          if (Array.isArray(savedRecipesData)) {
-            setSavedRecipes(savedRecipesData);
-          } else {
-            console.error(
-              "Unexpected data format for saved recipes:",
-              savedRecipesData
-            );
-          }
+          setSavedRecipes(result.data.savedRecipes);
         })
-        .catch((err) => {
-          console.error("Error fetching saved recipes:", err);
-        });
+        .catch((err) => console.log(err));
     };
+
     fetchSavedRecipes();
     getRecipe();
   }, []);
@@ -67,6 +48,8 @@ const ReadRecipe = () => {
     }
   };
 
+  // const isRecipeSaved = (id) => savedRecipes.includes(id);
+
   return (
     <div className="d-flex justify-content-center container mt-3">
       <div className="p-2">
@@ -84,7 +67,6 @@ const ReadRecipe = () => {
         </button>
         <h4>Ingredients</h4>
         <p>{recipe.ingredients}</p>
-        <img src={recipe.imageUrl} alt="" />
         <h4>Description</h4>
         <p>{recipe.description}</p>
       </div>

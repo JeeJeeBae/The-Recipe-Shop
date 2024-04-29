@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const userRouter = require("./Routes/auth");
 const cookieParser = require("cookie-parser");
 const recipeRouter = require("./Routes/recipeRoutes");
+// const roles = require("./Routes/rolesRoutes");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/auth", userRouter);
 app.use("/recipe", recipeRouter);
+// app.use("/roles", roles);
 
 mongoose.connect("mongodb://127.0.0.1:27017/recipe");
 

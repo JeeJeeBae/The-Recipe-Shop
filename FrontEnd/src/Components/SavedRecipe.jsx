@@ -27,6 +27,7 @@ const SavedRecipe = () => {
             >
               <h3>{recipe.name}</h3>
             </Link>
+
             <img src={recipe.imageUrl} alt="Recipe" />
           </div>
         ))}
