@@ -21,7 +21,7 @@ const Login = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="p-3 border border-1 w-25">
+      <div className="p-3 border border-1 w-50">
         <h3>Login</h3>
         <form onSubmit={handleSubmit}>
           <div>
