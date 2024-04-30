@@ -16,9 +16,18 @@ const CreateRecipe = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/roles/")
+      .get(
+        "http://localhost:3001/auth/user-role/" +
+          window.localStorage.getItem("id"),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((response) => {
         setUserRole(response.data.role);
+        console.log(response.data.role);
       })
       .catch((error) => {
         console.error("Error fetching user role:", error);

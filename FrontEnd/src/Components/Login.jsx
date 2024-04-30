@@ -2,20 +2,44 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
+  // axios.defaults.withCredentials = true;
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:3001/auth/login", { username, password })
+  //     .then((result) => {
+  //       window.localStorage.setItem("id", result.data.id);
+  //       navigate("/");
+  //       console.log(result);
+  //     });
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:3001/auth/login", { username, password })
       .then((result) => {
-        window.localStorage.setItem("id", result.data.id);
-        navigate("/");
-        console.log(result);
+        // Assuming your API response contains user information or token
+        if (result.data && result.data.id) {
+          // Save user ID to localStorage or session storage for authentication persistence
+          window.localStorage.setItem("id", result.data.id);
+          // Invoke the onLogin callback passed from the parent component
+          onLogin();
+          // Redirect to home page
+          navigate("/");
+        } else {
+          // Handle authentication error if needed
+          console.log("Authentication failed");
+        }
+      })
+      .catch((error) => {
+        // Handle any login errors
+        console.error("Login error:", error);
       });
   };
 

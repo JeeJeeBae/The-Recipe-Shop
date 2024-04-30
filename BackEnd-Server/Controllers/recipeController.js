@@ -43,9 +43,8 @@ const getRecipeById = async (req, res) => {
 const updateRecipe = async (req, res) => {
   try {
     const recipeId = req.params.id;
-    const updates = req.body; // Data to update
+    const updates = req.body;
 
-    // Find the recipe by ID and update it
     const updatedRecipe = await RecipeModel.findByIdAndUpdate(
       recipeId,
       updates,

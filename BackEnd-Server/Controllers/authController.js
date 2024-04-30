@@ -44,4 +44,19 @@ const logoutUser = (req, res) => {
   res.json({ message: "Logout successful" });
 };
 
-module.exports = { registerUser, loginUser, logoutUser };
+const getUserRole = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const user = await UserModel.findById(userId);
+    console.log(user);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json({ role: user.role });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch user role" });
+  }
+};
+
+module.exports = { registerUser, loginUser, logoutUser, getUserRole };
