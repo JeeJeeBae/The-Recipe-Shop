@@ -1,9 +1,7 @@
-// const express = require("express");
-// const router = express.Router();
-// const RolesModel = require("../Models/Roles");
-
+const express = require("express");
 const router = express.Router();
+const RolesModel = require("../Models/Roles");
 
-// router.get("/", getAllRoles);
+router.get("/roles", getAllRoles);
 
-// module.exports = router;
+module.exports = router;
