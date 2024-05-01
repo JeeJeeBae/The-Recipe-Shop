@@ -3,62 +3,50 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  // axios.defaults.withCredentials = true;
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:3001/auth/login", { username, password })
-  //     .then((result) => {
-  //       window.localStorage.setItem("id", result.data.id);
-  //       navigate("/");
-  //       console.log(result);
-  //     });
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/auth/login", { username, password })
+      .post("http://localhost:3001/auth/login", { email, password })
       .then((result) => {
-        // Assuming your API response contains user information or token
         if (result.data && result.data.id) {
-          // Save user ID to localStorage or session storage for authentication persistence
           window.localStorage.setItem("id", result.data.id);
-          // Invoke the onLogin callback passed from the parent component
+
           onLogin();
-          // Redirect to home page
+
           navigate("/");
         } else {
-          // Handle authentication error if needed
           console.log("Authentication failed");
         }
       })
       .catch((error) => {
-        // Handle any login errors
         console.error("Login error:", error);
       });
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="p-3 border border-1 w-50">
-        <h3>Login</h3>
+      <div className="p-4 border border-1 w-75">
+        <h3 className="mb-4">Login</h3>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="username">Username</label>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
             <input
               type="text"
-              placeholder="Enter Username"
+              placeholder="Enter Email"
               className="form-control"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
             <input
               type="password"
               placeholder="Enter Password"
@@ -66,11 +54,9 @@ const Login = ({ onLogin }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button className="mt-2 w-100 btn btn-success">Submit</button>
-          <Link to="/auth/register">
-            <button className="btn btn-default w-100 mt-2 border">
-              Register
-            </button>
+          <button className="mt-3 w-100 btn btn-success">Login</button>
+          <Link to="/auth/register" className="mt-3 d-block text-center">
+            <button className="btn btn-outline-dark w-100">Register</button>
           </Link>
         </form>
       </div>

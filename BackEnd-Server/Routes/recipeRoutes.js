@@ -5,12 +5,12 @@ const {
   getAllRecipes,
   getRecipeById,
   updateRecipe,
-  deleteRecipe,
 } = require("../Controllers/recipeController");
 const {
   getSavedRecipes,
   getUserRecipes,
   saveRecipe,
+  unsaveRecipe,
 } = require("../Controllers/userController");
 
 router.post("/create-recipe", createRecipe);
@@ -20,6 +20,6 @@ router.get("/saved-recipes/:id", getSavedRecipes);
 router.get("/user-recipes/:id", getUserRecipes);
 router.put("/", saveRecipe);
 router.patch("/recipe/:id", updateRecipe);
-router.delete("/delete-recipe/:id", deleteRecipe);
+router.delete("/unsave-recipe", unsaveRecipe);
 
 module.exports = router;

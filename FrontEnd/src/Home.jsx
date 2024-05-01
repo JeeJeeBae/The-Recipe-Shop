@@ -15,6 +15,7 @@ const Home = () => {
   return (
     <div className="d-flex justify-content-center">
       <div>
+        <br></br>
         <h2> Recipes</h2>
         {recipes.map((recipe) => (
           <div key={recipe._id} className="mt-4 p-3 border">

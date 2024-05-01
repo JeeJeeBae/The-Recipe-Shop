@@ -44,4 +44,27 @@ const saveRecipe = async (req, res) => {
   }
 };
 
-module.exports = { getSavedRecipes, getUserRecipes, saveRecipe };
+const unsaveRecipe = async (req, res) => {
+  try {
+    const { userId, recipeId } = req.body;
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Remove the recipeId from the user's savedRecipes array
+    const index = user.savedRecipes.indexOf(recipeId);
+    if (index !== -1) {
+      user.savedRecipes.splice(index, 1);
+      await user.save();
+    }
+
+    res.json({ message: "Recipe unsaved successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to unsave recipe for user" });
+  }
+};
+
+module.exports = { getSavedRecipes, getUserRecipes, saveRecipe, unsaveRecipe };

@@ -62,24 +62,9 @@ const updateRecipe = async (req, res) => {
   }
 };
 
-const deleteRecipe = async (req, res) => {
-  try {
-    const recipeId = req.params.id;
-    const deletedRecipe = await RecipeModel.findByIdAndDelete(recipeId);
-    if (!deletedRecipe) {
-      return res.status(404).json({ message: "Recipe not found" });
-    }
-    res.json({ message: "Recipe deleted successfully", deletedRecipe });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Failed to delete recipe" });
-  }
-};
-
 module.exports = {
   createRecipe,
   getAllRecipes,
   getRecipeById,
   updateRecipe,
-  deleteRecipe,
 };
