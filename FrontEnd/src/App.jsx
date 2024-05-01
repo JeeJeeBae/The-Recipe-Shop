@@ -24,7 +24,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      {isLoggedIn && <Nav onLogout={handleLogout} />}
+      {/* {isLoggedIn && <Nav onLogout={handleLogout} />} */}
+      <Nav onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth/register" element={<Registration />} />

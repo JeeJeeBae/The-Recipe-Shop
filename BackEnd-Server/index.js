@@ -31,12 +31,12 @@ mongoose.connect("mongodb://127.0.0.1:27017/recipe", {
   useUnifiedTopology: true,
 });
 
-populateRoles()
-  .then(() => {
-    app.listen(3001, () => {
-      console.log("Server started");
-    });
-  })
-  .catch((error) => {
-    console.error("Error populating roles:", error);
-  });
+// populateRoles()
+// .then(() => {
+app.listen(process.env.PORT, () => {
+  console.log("Server started");
+});
+// })
+// .catch((error) => {
+//   console.error("Error populating roles:", error);
+// });

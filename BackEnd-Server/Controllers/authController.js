@@ -63,8 +63,9 @@ const getUserRole = async (req, res) => {
 
 const getUserProfile = async (req, res) => {
   try {
-    const userId = req.session.userId;
+    const userId = req.body.userId;
     const user = await UserModel.findById(userId);
+    console.log(user);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -78,10 +79,30 @@ const getUserProfile = async (req, res) => {
   }
 };
 
+const updateUserEmail = async (req, res) => {
+  try {
+    const { userId, newEmail } = req.body;
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.email = newEmail;
+    await user.save();
+
+    res.json({ message: "Email updated successfully", email: newEmail });
+  } catch (error) {
+    console.error("Error updating email:", error);
+    res.status(500).json({ message: "Failed to update email" });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   logoutUser,
   getUserRole,
   getUserProfile,
+  updateUserEmail,
 };
