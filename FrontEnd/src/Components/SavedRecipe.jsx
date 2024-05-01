@@ -35,25 +35,38 @@ const SavedRecipe = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center">
-      <div>
-        <br></br>
-        <h2> Saved Recipes</h2>
+    <div className="container mt-4">
+      <h2 className="text-center mb-4">Saved Recipes</h2>
+      <div className="row justify-content-center">
         {savedRecipes.map((recipe) => (
-          <div key={recipe._id} className="mt-4 p-3 border">
-            <Link
-              to={`/read-recipe/${recipe._id}`}
-              className="text-decoration-none"
-            >
-              <h3>{recipe.name}</h3>
-            </Link>
-            <img src={recipe.imageUrl} alt="Recipe" />
-            <button
-              className="btn btn-danger mt-2"
-              onClick={() => handleUnsaveRecipe(recipe._id)}
-            >
-              Unsave
-            </button>
+          <div key={recipe._id} className="col-md-6">
+            <div className="card mb-4">
+              <img
+                src={recipe.imageUrl}
+                className="card-img-top"
+                alt="Recipe"
+                style={{ height: "300px", objectFit: "cover" }}
+              />
+              <div className="card-body">
+                <Link
+                  to={`/read-recipe/${recipe._id}`}
+                  className="text-decoration-none"
+                >
+                  <h5 className="card-title">{recipe.name}</h5>
+                </Link>
+                <button
+                  className="btn ms-2"
+                  onClick={() => handleUnsaveRecipe(recipe._id)}
+                  style={{
+                    margin: "20px",
+                    backgroundColor: "green",
+                    color: "white",
+                  }}
+                >
+                  Unsave this receipe
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>

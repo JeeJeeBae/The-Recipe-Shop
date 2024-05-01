@@ -53,7 +53,7 @@ const Registration = () => {
           </div>
           <div className="mb-3">
             <label htmlFor="text" className="form-label">
-              Are you a reader or a creator?
+              Choose your role:
             </label>
             <select
               className="form-control"
@@ -65,9 +65,9 @@ const Registration = () => {
               <option value="creator">Creator</option>
             </select>
           </div>
-          <button className="mt-3 w-100 btn btn-success">Submit</button>{" "}
+          <button className="mt-3 w-100 btn btn-success">Submit</button>
           <Link to="/auth/login" className="mt-3 d-block text-center">
-            <button className="btn btn-outline-dark w-100">Login</button>{" "}
+            <button className="btn btn-outline-dark w-100">Login</button>
           </Link>
         </form>
       </div>

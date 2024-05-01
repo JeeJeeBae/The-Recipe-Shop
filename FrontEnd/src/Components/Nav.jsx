@@ -5,12 +5,12 @@ import axios from "axios";
 
 const Nav = ({ onLogout }) => {
   const handleLogout = () => {
-    window.localStorage.clear();
+    window.localStorage.clear(); // Clear local storage on logout
     axios
       .get("http://localhost:3001/auth/logout")
       .then((result) => {
-        onLogout();
-        history.push("http://localhost:5174/auth/login");
+        onLogout(); // Call the onLogout function to update the isLoggedIn state in App component
+        history.push("/auth/login"); // Redirect to the Login page after logout
       })
       .catch((err) => console.log(err));
   };
@@ -38,6 +38,12 @@ const Nav = ({ onLogout }) => {
               </Link>
             </li>
           </ul>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/profile">
+              Profile
+            </Link>
+          </li>
+
           {window.localStorage.length ? (
             <button className="btn btn-outline-light" onClick={handleLogout}>
               Logout
@@ -45,7 +51,7 @@ const Nav = ({ onLogout }) => {
           ) : (
             <button className="btn btn-outline-light">
               <Link
-                to="/auth/register"
+                to="/auth/login"
                 className="text-decoration-none text-white"
               >
                 Login/Register

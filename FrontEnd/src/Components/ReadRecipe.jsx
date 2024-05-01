@@ -30,7 +30,7 @@ const ReadRecipe = () => {
 
     fetchSavedRecipes();
     getRecipe();
-  }, []);
+  }, [id, userId]);
 
   const savedRecipe = (recipeId) => {
     axios
@@ -38,37 +38,39 @@ const ReadRecipe = () => {
       .then((result) => setSavedRecipes(result.data.savedRecipes))
       .catch((err) => console.log(err));
   };
+
   const isRecipeSaved = (id) => {
-    // Check if savedRecipes is defined and is an array
-    if (Array.isArray(savedRecipes)) {
-      return savedRecipes.includes(id);
-    } else {
-      console.error("savedRecipes is not an array:", savedRecipes);
-      return false; // Return false as a fallback
-    }
+    return Array.isArray(savedRecipes) && savedRecipes.includes(id);
   };
 
-  // const isRecipeSaved = (id) => savedRecipes.includes(id);
-
   return (
-    <div className="d-flex justify-content-center container mt-3">
-      <div className="p-2">
-        <img src={recipe.imageUrl} alt="" />
-      </div>
-
-      <div className="p-2">
-        <h2>{recipe.name}</h2>
-        <button
-          className="btn btn-warning"
-          onClick={() => savedRecipe(recipe._id)}
-          disabled={isRecipeSaved(recipe._id)}
-        >
-          {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
-        </button>
-        <h4>Ingredients</h4>
-        <p>{recipe.ingredients}</p>
-        <h4>Description</h4>
-        <p>{recipe.description}</p>
+    <div className="container mt-4">
+      <h2 className="text-center mb-4">{recipe.name}</h2>
+      <div className="row">
+        <div className="col-md-4">
+          <img
+            src={recipe.imageUrl}
+            alt="Recipe Image"
+            className="img-fluid mb-3"
+          />
+          <button
+            className="btn btn-warning w-100"
+            onClick={() => savedRecipe(recipe._id)}
+            disabled={isRecipeSaved(recipe._id)}
+          >
+            {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
+          </button>
+        </div>
+        <div className="col-md-8">
+          <div className="mb-4">
+            <h4>Ingredients</h4>
+            <p>{recipe.ingredients}</p>
+          </div>
+          <div className="mb-4">
+            <h4>Description</h4>
+            <p>{recipe.description}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

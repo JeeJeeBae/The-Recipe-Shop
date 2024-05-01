@@ -107,7 +107,7 @@ const CreateRecipe = () => {
         {userRole === "reader" && (
           <p>
             Sorry, you do not have permission to create a recipe as a reader.
-            <button>Learn how you can become a creator</button>
+            <button className="">Learn how you can become a creator</button>
           </p>
         )}
       </div>

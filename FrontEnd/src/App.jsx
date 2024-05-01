@@ -7,16 +7,19 @@ import Nav from "./Components/Nav";
 import CreateRecipe from "./Components/CreateRecipe";
 import SavedRecipe from "./Components/SavedRecipe";
 import ReadRecipe from "./Components/ReadRecipe";
+import Profile from "./Components/Profile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    setIsLoggedIn(true); // Set isLoggedIn to true on successful login
+    setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", "true");
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false); // Set isLoggedIn to false on logout
+    setIsLoggedIn(false);
+    localStorage.removeItem("isLoggedIn");
   };
 
   return (
@@ -29,6 +32,7 @@ function App() {
         <Route path="/recipe/create-recipe" element={<CreateRecipe />} />
         <Route path="/recipe/saved-recipe" element={<SavedRecipe />} />
         <Route path="/read-recipe/:id" element={<ReadRecipe />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
