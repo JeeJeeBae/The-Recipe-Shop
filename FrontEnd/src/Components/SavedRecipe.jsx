@@ -8,7 +8,11 @@ const SavedRecipe = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/recipe/user-recipes/${userId}`)
+      .get(import.meta.env.VITE_SERVER + `/recipe/user-recipes/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((response) => {
         setSavedRecipes(response.data);
       })
@@ -19,8 +23,11 @@ const SavedRecipe = () => {
 
   const handleUnsaveRecipe = (recipeId) => {
     axios
-      .delete(`http://localhost:3001/recipe/unsave-recipe`, {
-        data: { userId, recipeId }, // Pass userId and recipeId in the request body
+      .delete(import.meta.env.VITE_SERVER + "/recipe/unsave-recipe", {
+        data: { userId, recipeId },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        }, // Pass userId and recipeId in the request body
       })
       .then((response) => {
         // Filter out the unsaved recipe from savedRecipes

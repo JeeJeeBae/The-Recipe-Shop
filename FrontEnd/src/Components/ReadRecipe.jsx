@@ -12,7 +12,11 @@ const ReadRecipe = () => {
   useEffect(() => {
     const getRecipe = () => {
       axios
-        .get("http://localhost:3001/recipe/recipe-by-id/" + id)
+        .get(import.meta.env.VITE_SERVER + "/recipe/recipe-by-id/" + id, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
         .then((result) => {
           setRecipe(result.data);
         })
@@ -21,7 +25,11 @@ const ReadRecipe = () => {
 
     const fetchSavedRecipes = () => {
       axios
-        .get("http://localhost:3001/recipe/saved-recipes/" + userId)
+        .get(import.meta.env.VITE_SERVER + "/recipe/saved-recipes/" + userId, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
         .then((result) => {
           setSavedRecipes(result.data.savedRecipes);
         })
@@ -34,7 +42,15 @@ const ReadRecipe = () => {
 
   const savedRecipe = (recipeId) => {
     axios
-      .put("http://localhost:3001/recipe", { userId, recipeId })
+      .put(
+        import.meta.env.VITE_SERVER + "/recipe",
+        { userId, recipeId },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((result) => setSavedRecipes(result.data.savedRecipes))
       .catch((err) => console.log(err));
   };

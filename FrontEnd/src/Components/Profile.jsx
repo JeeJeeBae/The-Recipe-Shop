@@ -9,9 +9,17 @@ const Profile = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/auth/profile", {
-        userId,
-      });
+      const response = await axios.post(
+        import.meta.env.VITE_SERVER + "/auth/profile",
+        {
+          userId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       // console.log(response);
       setProfile(response.data);
     } catch (error) {
@@ -41,10 +49,16 @@ const Profile = () => {
   const handleEditEmail = async () => {
     try {
       const response = await axios.patch(
-        "http://localhost:3001/auth/update-email",
+        import.meta.env.VITE_SERVER + "/auth/update-email",
+
         {
           userId,
           newEmail,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
       //   setUser({ ...profile, email: newEmail });

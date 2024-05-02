@@ -10,7 +10,16 @@ const Login = ({ onLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/auth/login", { email, password })
+      .post(
+        import.meta.env.VITE_SERVER + "/auth/login",
+        { email, password },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+
       .then((result) => {
         if (result.data && result.data.id) {
           window.localStorage.setItem("id", result.data.id);

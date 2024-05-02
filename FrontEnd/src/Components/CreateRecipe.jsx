@@ -22,7 +22,8 @@ const CreateRecipe = () => {
     }
     axios
       .get(
-        "http://localhost:3001/auth/user-role/" +
+        import.meta.env.VITE_SERVER +
+          "/auth/user-role/" +
           window.localStorage.getItem("id"),
         {
           headers: {
@@ -46,7 +47,11 @@ const CreateRecipe = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/recipe/create-recipe", recipe)
+      .post(import.meta.env.VITE_SERVER + "/recipe/create-recipe", recipe, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((result) => {
         navigate("/");
         console.log(result.data);

@@ -2,6 +2,9 @@ const RecipeModel = require("../Models/Recipe");
 
 const createRecipe = async (req, res) => {
   try {
+    if (req.decoded.id !== req.body.userId) {
+      return res.status(403).json({ status: "error", msg: "not authorised" });
+    }
     const { name, description, ingredients, imageUrl, userId } = req.body;
     const recipe = await RecipeModel.create({
       name,

@@ -9,11 +9,13 @@ const {
   updateUserEmail,
 } = require("../Controllers/authController");
 
+const auth = require("../middleware/auth");
+
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/logout", logoutUser);
-router.get("/user-role/:id", getUserRole);
-router.post("/profile", getUserProfile);
-router.patch("/update-email", updateUserEmail);
+router.get("/user-role/:id", auth, getUserRole);
+router.post("/profile", auth, getUserProfile);
+router.patch("/update-email", auth, updateUserEmail);
 
 module.exports = router;

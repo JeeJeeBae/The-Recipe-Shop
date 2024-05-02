@@ -13,13 +13,15 @@ const {
   unsaveRecipe,
 } = require("../Controllers/userController");
 
-router.post("/create-recipe", createRecipe);
-router.get("/recipes", getAllRecipes);
-router.get("/recipe-by-id/:id", getRecipeById);
-router.get("/saved-recipes/:id", getSavedRecipes);
-router.get("/user-recipes/:id", getUserRecipes);
-router.put("/", saveRecipe);
-router.patch("/recipe/:id", updateRecipe);
-router.delete("/unsave-recipe", unsaveRecipe);
+const auth = require("../middleware/auth");
+
+router.post("/create-recipe", auth, createRecipe);
+router.get("/recipes", auth, getAllRecipes);
+router.get("/recipe-by-id/:id", auth, getRecipeById);
+router.get("/saved-recipes/:id", auth, getSavedRecipes);
+router.get("/user-recipes/:id", auth, getUserRecipes);
+router.put("/", auth, saveRecipe);
+router.patch("/recipe/:id", auth, updateRecipe);
+router.delete("/unsave-recipe", auth, unsaveRecipe);
 
 module.exports = router;

@@ -9,7 +9,7 @@ const Nav = ({ onLogout }) => {
   const handleLogout = () => {
     window.localStorage.clear(); // Clear local storage on logout
     axios
-      .get("http://localhost:3001/auth/logout")
+      .get(import.meta.env.VITE_SERVER + "/auth/logout")
       .then((result) => {
         onLogout(); // Call the onLogout function to update the isLoggedIn state in App component
         navigate("/auth/login");

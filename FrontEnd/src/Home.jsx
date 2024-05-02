@@ -14,7 +14,11 @@ const Home = () => {
     }
 
     axios
-      .get("http://localhost:3001/recipe/recipes")
+      .get(import.meta.env.VITE_SERVER + "/recipe/recipes", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((response) => {
         setRecipes(response.data);
       })
@@ -25,7 +29,6 @@ const Home = () => {
 
   return (
     <div className="container mt-4">
-      {/* <h2 className="text-center mb-4">Recipes</h2> */}
       <br></br>
       <div className="row">
         {recipes.map((recipe) => (
