@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Registration from "./Components/Registration";
 import Login from "./Components/Login";
@@ -11,6 +11,7 @@ import Profile from "./Components/Profile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -22,10 +23,18 @@ function App() {
     localStorage.removeItem("isLoggedIn");
   };
 
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn");
+
+    if (loggedIn) {
+      setIsLoggedIn(true);
+    }
+  });
+
   return (
     <BrowserRouter>
-      {/* {isLoggedIn && <Nav onLogout={handleLogout} />} */}
-      <Nav onLogout={handleLogout} />
+      {isLoggedIn && <Nav onLogout={handleLogout} />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth/register" element={<Registration />} />

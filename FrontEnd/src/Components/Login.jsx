@@ -14,6 +14,7 @@ const Login = ({ onLogin }) => {
       .then((result) => {
         if (result.data && result.data.id) {
           window.localStorage.setItem("id", result.data.id);
+          window.localStorage.setItem("token", result.data.token);
 
           onLogin();
 

@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/auth/login");
+    }
+
     axios
       .get("http://localhost:3001/recipe/recipes")
       .then((response) => {
