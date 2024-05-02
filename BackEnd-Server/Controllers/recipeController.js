@@ -43,31 +43,8 @@ const getRecipeById = async (req, res) => {
   }
 };
 
-const updateRecipe = async (req, res) => {
-  try {
-    const recipeId = req.params.id;
-    const updates = req.body;
-
-    const updatedRecipe = await RecipeModel.findByIdAndUpdate(
-      recipeId,
-      updates,
-      { new: true }
-    );
-
-    if (!updatedRecipe) {
-      return res.status(404).json({ message: "Recipe not found" });
-    }
-
-    res.json({ message: "Recipe updated successfully", updatedRecipe });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Failed to update recipe" });
-  }
-};
-
 module.exports = {
   createRecipe,
   getAllRecipes,
   getRecipeById,
-  updateRecipe,
 };

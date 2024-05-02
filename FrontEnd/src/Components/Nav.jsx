@@ -7,14 +7,12 @@ const Nav = ({ onLogout }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    window.localStorage.clear(); // Clear local storage on logout
+    window.localStorage.clear();
     axios
       .get(import.meta.env.VITE_SERVER + "/auth/logout")
       .then((result) => {
-        onLogout(); // Call the onLogout function to update the isLoggedIn state in App component
+        onLogout();
         navigate("/auth/login");
-
-        // history.push("/auth/login"); // Redirect to the Login page after logout
       })
       .catch((err) => console.log(err));
   };
@@ -22,11 +20,11 @@ const Nav = ({ onLogout }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <div className="container">
+        <Link className="navbar-brand text-white" to="/">
+          R-E-C-I-P-E-S
+        </Link>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand text-white" to="/">
-            R-E-C-I-P-E-S
-          </Link>
-          <ul className="navbar-nav ms-2 me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link text-white" to="/recipe/saved-recipe">
                 Your Saved Recipe
@@ -41,27 +39,26 @@ const Nav = ({ onLogout }) => {
                 Create
               </Link>
             </li>
-          </ul>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/profile">
-              Profile
-            </Link>
-          </li>
-
-          {window.localStorage.length ? (
-            <button className="btn btn-outline-light" onClick={handleLogout}>
-              Logout
-            </button>
-          ) : (
-            <button className="btn btn-outline-light">
-              <Link
-                to="/auth/login"
-                className="text-decoration-none text-white"
-              >
-                Login/Register
+            <li className="nav-item">
+              <Link className="nav-link text-white" to="/profile">
+                Profile
               </Link>
-            </button>
-          )}
+            </li>
+            <li className="nav-item">
+              {window.localStorage.length ? (
+                <button
+                  className="btn btn-outline-light"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link to="/auth/login" className="nav-link text-white">
+                  Login/Register
+                </Link>
+              )}
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

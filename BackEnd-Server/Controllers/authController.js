@@ -6,14 +6,14 @@ const registerUser = async (req, res) => {
   try {
     const { email, password, role } = req.body;
     const existingUser = await UserModel.findOne({ email });
-    // console.log(existingUser);
+
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new UserModel({ email, password: hashedPassword, role });
     await newUser.save();
-    // console.log("CHECK");
+
     res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
     console.error(err);
@@ -35,7 +35,6 @@ const loginUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.ACCESS_SECRET, {
       expiresIn: "1h",
     });
-    // res.cookie("token", token);
 
     res.json({ message: "Login successful", id: user._id, token });
   } catch (err) {
@@ -84,6 +83,9 @@ const getUserProfile = async (req, res) => {
 
 const updateUserEmail = async (req, res) => {
   try {
+    if (req.decoded.id !== req.body.userId) {
+      return res.status(403).json({ status: "error", msg: "not authorised" });
+    }
     const { userId, newEmail } = req.body;
     const user = await UserModel.findById(userId);
 

@@ -6,11 +6,9 @@ const cookieParser = require("cookie-parser");
 const userRouter = require("./Routes/auth");
 const recipeRouter = require("./Routes/recipeRoutes");
 const rolesRouter = require("./Routes/rolesRoutes");
-const { populateRoles } = require("./Controllers/populateController");
 
 const app = express();
 
-// Middleware
 app.use(
   cors({
     origin: ["http://localhost:5174"],
@@ -21,7 +19,6 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-// Routes
 app.use("/auth", userRouter);
 app.use("/recipe", recipeRouter);
 app.use("/roles", rolesRouter);
@@ -31,12 +28,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/recipe", {
   useUnifiedTopology: true,
 });
 
-// populateRoles()
-// .then(() => {
 app.listen(process.env.PORT, () => {
   console.log("Server started");
 });
-// })
-// .catch((error) => {
-//   console.error("Error populating roles:", error);
-// });

@@ -27,10 +27,10 @@ const SavedRecipe = () => {
         data: { userId, recipeId },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-        }, // Pass userId and recipeId in the request body
+        }, // pass userId and recipeId in the request body
       })
       .then((response) => {
-        // Filter out the unsaved recipe from savedRecipes
+        // dilter out the unsaved recipe from savedRecipes
         setSavedRecipes(
           savedRecipes.filter((recipe) => recipe._id !== recipeId)
         );

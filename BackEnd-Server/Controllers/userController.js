@@ -53,7 +53,7 @@ const unsaveRecipe = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Remove the recipeId from the user's savedRecipes array
+    // remove the recipeId from the user's savedRecipes array
     const index = user.savedRecipes.indexOf(recipeId);
     if (index !== -1) {
       user.savedRecipes.splice(index, 1);
