@@ -11,7 +11,6 @@ import Profile from "./Components/Profile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
 
   const handleLogin = () => {
     setIsLoggedIn(true);
