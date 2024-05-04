@@ -5,15 +5,23 @@ The RecipeShop is an recipe creation app, where users can save recipes to their 
 
 ## Login & Registration:
 ![Register](https://github.com/JeeJeeBae/The-Recipe-Shop/blob/main/1-register.png)
+![Login](https://github.com/JeeJeeBae/The-Recipe-Shop/blob/main/2-login.png)
 
 ## Recipes Home:
-![ManagerGrade](https://github.com/fir3buster/TradeSensei/blob/main/img/2_managergrade.png?raw=true)
+![RecipeHome](https://github.com/JeeJeeBae/The-Recipe-Shop/blob/main/3-home.png)
 
-## Individual recipe page + save recipe:
-![GwView](https://github.com/fir3buster/TradeSensei/blob/main/img/6_gmview.png?raw=true)
+## Individual Recipe Page:
+![RecipePage](https://github.com/JeeJeeBae/The-Recipe-Shop/blob/main/4-recipe.png)
 
-## Individual recipe page + save recipe:
-![GwView](https://github.com/fir3buster/TradeSensei/blob/main/img/6_gmview.png?raw=true)
+## Saved Recipes:
+![SavedRecipes](https://github.com/JeeJeeBae/The-Recipe-Shop/blob/main/5-saved.png)
+
+## Create Recipe Page:
+![Profile](https://github.com/JeeJeeBae/The-Recipe-Shop/blob/main/6-create.png)
+
+## Profile Page:
+![Profile](https://github.com/JeeJeeBae/The-Recipe-Shop/blob/main/7-profile.png)
+
 
 # Technologies Used
 <div>
@@ -30,18 +38,11 @@ The RecipeShop is an recipe creation app, where users can save recipes to their 
 - [Public Board](https://trello.com/b/mayez1KZ/the-recipe-shop-v2)
 ![EntityRelationshipDiagram](https://trello.com/c/BKys9qbv/11-diagram-image)
 
-# App Design
-
-
 
 # Planned future enhancements (icebox items)
 - Add the abilities for users to delete their own recipes
 - Add servings to the recipe equation
-- 
 
 
 # Challenges
 It was a challenge over all as this was my first time creating an app from scratch including registration and login of users. The project solidified my understanding of how it all works overall(frontend + backend)
-
-
-
