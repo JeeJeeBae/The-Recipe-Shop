@@ -4,7 +4,7 @@ The RecipeShop is an recipe creation app, where users can save recipes to their 
 # Screenshots
 
 ## Login & Registration:
-![Register](https://github.com/fir3buster/TradeSensei/blob/main/img/1_register.png?raw=true)
+![Register](https://github.com/JeeJeeBae/The-Recipe-Shop/blob/main/1-register.png)
 
 ## Recipes Home:
 ![ManagerGrade](https://github.com/fir3buster/TradeSensei/blob/main/img/2_managergrade.png?raw=true)
