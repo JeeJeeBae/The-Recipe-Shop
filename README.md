@@ -24,15 +24,8 @@ The RecipeShop is an recipe creation app, where users can save recipes to their 
 
 
 # Technologies Used
-<div>
-    <img src="./img/javascript.png" alt="JavaScript" width="50" height="50">
-    <img src="./img/react.png" alt="React" width="50" height="50">
-    <img src="./img/css.png" alt="CSS" width="50" height="50">
-    <img src="./img/html.png" alt="HTML" width="50" height="50">
-    <img src="./img/mongoDB.png" alt="MongoDB" width="50" height="50">
-    <img src="./img/expressjs.png" alt="ExpressJS" width="50" height="50">
-    <img src="./img/nodejs.png" alt="NodeJS" width="50" height="50">
-</div>
+
+JavaScript, React, CSS, HTML, MongoDB, ExpressJS, NodeJS
 
 # Getting Started
 - [Public Board](https://trello.com/b/mayez1KZ/the-recipe-shop-v2)
