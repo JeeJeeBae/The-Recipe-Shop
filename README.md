@@ -29,7 +29,7 @@ JavaScript, React, CSS, HTML, MongoDB, ExpressJS, NodeJS
 
 # Getting Started
 - [Public Board](https://trello.com/b/mayez1KZ/the-recipe-shop-v2)
-![EntityRelationshipDiagram](https://trello.com/c/BKys9qbv/11-diagram-image)
+- [EntityRelationshipDiagram](https://trello.com/c/BKys9qbv/11-diagram-image)
 
 
 # Planned future enhancements (icebox items)
